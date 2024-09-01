@@ -4,11 +4,6 @@ from models.task import Task
 app = Flask(__name__)
 
 tasks = []
-tasks = [
-    Task(id=1, title='Task 1', description='Description 1'),
-    Task(id=2, title='Task 2', description='Description 3'),
-    Task(id=3, title='Task 3', description='Description 3'),
-]
 task_id_control = 1
 
 @app.route("/")
@@ -27,7 +22,7 @@ def create_task():
     )
     task_id_control += 1
     tasks.append(new_task)
-    return jsonify({ "message": "Nova tarefa criada com sucesso" })
+    return jsonify({ "message": "Nova tarefa criada com sucesso", "id": new_task.id })
 
 @app.route('/tasks', methods=['GET'])
 def list_tasks():
